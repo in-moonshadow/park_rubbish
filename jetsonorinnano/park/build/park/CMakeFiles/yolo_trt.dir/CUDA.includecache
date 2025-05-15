@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/wheeltec/park/src/park/src/common_struct.hpp
+
+/home/wheeltec/park/src/park/src/kernels/get_nms_before_boxes.cu
+get_nms_before_boxes.cuh
+/home/wheeltec/park/src/park/src/kernels/get_nms_before_boxes.cuh
+
+/home/wheeltec/park/src/park/src/kernels/get_nms_before_boxes.cuh
+stdio.h
+-
+../common_struct.hpp
+/home/wheeltec/park/src/park/src/common_struct.hpp
+

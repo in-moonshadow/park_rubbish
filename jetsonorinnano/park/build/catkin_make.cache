@@ -1,0 +1,2 @@
+park:yolov5
+-DCATKIN_DEVEL_PREFIX=/home/wheeltec/park/devel -DCMAKE_INSTALL_PREFIX=/home/wheeltec/park/install -G Unix Makefiles

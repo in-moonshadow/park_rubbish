@@ -1,0 +1,90 @@
+TebLocalPlannerROS:
+
+  odom_topic: odom  # 定义里程计话题名称，默认为 "odom"。
+
+  # Trajectory 轨迹相关参数
+  teb_autosize: True  # 是否自动调整轨迹的时间分辨率（dt）。
+  dt_ref: 0.3  # 参考时间分辨率（秒），用于生成轨迹点。
+  dt_hysteresis: 0.1  # 时间分辨率的滞环值，用于动态调整 dt。
+  max_samples: 600  # 最大轨迹点数量，限制轨迹长度。
+  global_plan_overwrite_orientation: True  # 是否覆盖全局路径的方向信息。
+  allow_init_with_backwards_motion: False  # 是否允许机器人以倒退的方式初始化运动。
+  max_global_plan_lookahead_dist: 0.50  # 全局路径的最大前瞻距离（米）。
+  global_plan_viapoint_sep: -1  # 全局路径中插值点的间隔距离（-1 表示禁用插值点）。
+  global_plan_prune_distance: 1  # 剪枝全局路径的距离阈值。
+  exact_arc_length: False  # 是否使用精确弧长计算。
+  feasibility_check_no_poses: 5  # 检查轨迹可行性的姿态数量。
+  publish_feedback: False  # 是否发布规划器的反馈信息。
+
+  
+
+  # GoalTolerance 目标容忍度相关参数
+  yaw_goal_tolerance: 0.040  # 目标位置的角度容忍度（弧度）。
+  xy_goal_tolerance: 0.03  # 目标位置的位置容忍度（米）。
+  free_goal_vel: False  # 是否在接近目标时允许自由速度。
+  complete_global_plan: True  # 是否要求机器人完全跟随全局路径到达目标。
+
+  # Obstacles 障碍物相关参数
+  min_obstacle_dist: 0.175  # 机器人与障碍物之间的最小安全距离（包括机器人半径）。
+  inflation_dist: 0.025  # 障碍物膨胀距离，用于增加安全边界。
+  include_costmap_obstacles: True  # 是否包含代价地图中的障碍物。
+  costmap_obstacles_behind_robot_dist: 1.5  # 忽略机器人后方一定距离内的障碍物。
+  obstacle_poses_affected: 15  # 受障碍物影响的姿态数量。
+  dynamic_obstacle_inflation_dist: 0.25  # 动态障碍物的膨胀距离。
+  include_dynamic_obstacles: True  # 是否考虑动态障碍物。
+  costmap_converter_plugin: ""  # 代价地图转换插件（留空表示不使用）。
+  costmap_converter_spin_thread: True  # 是否启用代价地图转换线程。
+  costmap_converter_rate: 5  # 代价地图转换频率（赫兹）。
+
+  # Optimization 优化相关参数
+  no_inner_iterations: 5  # 内部优化迭代次数。
+  no_outer_iterations: 4  # 外部优化迭代次数。
+  optimization_activate: True  # 是否启用优化。
+  optimization_verbose: False  # 是否输出优化的详细日志。
+  penalty_epsilon: 0.1  # 约束惩罚的容差值。
+  obstacle_cost_exponent: 4  # 障碍物成本的指数。
+  weight_max_vel_x: 2  # 最大线速度权重。
+  weight_max_vel_theta: 1  # 最大角速度权重。
+  weight_acc_lim_x: 1  # 线性加速度限制权重。
+  weight_acc_lim_theta: 1  # 角加速度限制权重。
+  weight_kinematics_nh: 1000  # 非完整约束权重。
+  weight_kinematics_forward_drive: 1  # 前进运动权重。
+  weight_kinematics_turning_radius: 1  # 转弯半径权重。
+  weight_optimaltime: 1  # 时间最优权重（必须大于 0）。
+  weight_shortest_path: 0  # 最短路径权重（0 表示不优先最短路径）。
+  weight_obstacle: 100  # 障碍物避让权重。
+  weight_inflation: 0.2  # 障碍物膨胀权重。
+  weight_dynamic_obstacle: 10  # 动态障碍物权重。
+  weight_dynamic_obstacle_inflation: 0.2  # 动态障碍物膨胀权重。
+  weight_viapoint: 1  # 插值点权重。
+  weight_adapt_factor: 2  # 权重自适应因子。
+
+  # Homotopy Class Planner 同伦类规划器相关参数
+  enable_homotopy_class_planning: True  # 是否启用同伦类规划器。
+  enable_multithreading: True  # 是否启用多线程。
+  max_number_classes: 4  # 最大同伦类数量。
+  selection_cost_hysteresis: 1.0  # 成本选择的滞环值。
+  selection_prefer_initial_plan: 0.9  # 偏好初始路径的成本比例。
+  selection_obst_cost_scale: 100.0  # 障碍物成本的比例因子。
+  selection_alternative_time_cost: False  # 是否使用替代时间成本。
+  roadmap_graph_no_samples: 15  # 路图采样点数量。
+  roadmap_graph_area_width: 5  # 路图区域宽度（米）。
+  roadmap_graph_area_length_scale: 1.0  # 路图区域长度缩放因子。
+  h_signature_prescaler: 0.5  # H-signature 缩放因子。
+  h_signature_threshold: 0.1  # H-signature 阈值。
+  obstacle_heading_threshold: 0.45  # 障碍物方向阈值。
+  switching_blocking_period: 0.0  # 切换阻塞周期（秒）。
+  viapoints_all_candidates: True  # 是否为所有候选路径生成插值点。
+  delete_detours_backwards: True  # 是否删除向后的绕行路径。
+  max_ratio_detours_duration_best_duration: 3.0  # 绕行路径持续时间与最佳路径持续时间的最大比率。
+  visualize_hc_graph: False  # 是否可视化同伦类图。
+  visualize_with_time_as_z_axis_scale: False  # 是否将时间作为 Z 轴进行可视化。
+
+  # Recovery 恢复行为相关参数
+  shrink_horizon_backup: True  # 是否启用缩短视距的备份策略。
+  shrink_horizon_min_duration: 10  # 缩短视距的最小持续时间（秒）。
+  oscillation_recovery: True  # 是否启用振荡恢复行为。
+  oscillation_v_eps: 0.1  # 振荡检测的线速度阈值。
+  oscillation_omega_eps: 0.1  # 振荡检测的角速度阈值。
+  oscillation_recovery_min_duration: 10  # 振荡恢复的最小持续时间（秒）。
+  oscillation_filter_duration: 10  # 振荡过滤的持续时间（秒）。

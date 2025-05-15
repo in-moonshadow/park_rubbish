@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- 启动 yolo_trt_node 节点 -->
+    <node pkg="park" type="yolo_trt" name="yolo_trt_node" output="screen">
+        <!-- 参数配置 -->
+        <param name="onnx_file" value="/home/wheeltec/yolo/yolov11_tensorRT_postprocess_cuda/models/yolov11s.onnx" />
+        <param name="trt_file" value="/home/wheeltec/yolo/yolov11_tensorRT_postprocess_cuda/models/yolov11s.trt" />
+        <param name="device" value="/dev/video0" />
+        <param name="width" value="640" />
+        <param name="height" value="480" />
+        <param name="fps" value="30" />
+    </node>
+</launch>

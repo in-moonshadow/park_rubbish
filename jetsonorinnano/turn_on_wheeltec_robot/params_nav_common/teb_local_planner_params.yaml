@@ -1,0 +1,101 @@
+TebLocalPlannerROS:
+
+  # ========================
+  # 基础设置 (保持不变)
+  # ========================
+  odom_topic: odom
+  map_frame: map
+
+  # ========================
+  # 障碍物相关参数 (优化)
+  # ========================
+  min_obstacle_dist: 0.2           # 从0.3提高到0.35，增加安全裕度
+  include_costmap_obstacles: True
+  costmap_obstacles_behind_robot_dist: 1.2  # 从1.5降低，减少计算量
+  obstacle_poses_affected: 20        # 从25降低，减少处理的障碍物数量
+  costmap_converter_plugin: ""
+  costmap_converter_spin_thread: True
+  costmap_converter_rate: 10          # 从10降低，减轻CPU负载
+  include_dynamic_obstacles: True
+  dynamic_obstacle_inflation_dist: 0.5  # 从0.6降低，减少动态障碍物影响范围
+
+  # ========================
+  # 目标容忍度设置 (保持不变)
+  # ========================
+  xy_goal_tolerance: 0.1
+  yaw_goal_tolerance: 0.1
+  free_goal_vel: False
+
+  # ========================
+  # 轨迹配置参数 (优化)
+  # ========================
+  teb_autosize: True
+  dt_ref: 0.25                       # 从0.3降低，提高控制频率
+  dt_hysteresis: 0.08                # 从0.1降低，减少周期抖动
+  global_plan_viapoint_sep: 0.08     # 从0.05增大，减少路径点数量
+  global_plan_overwrite_orientation: True
+  max_global_plan_lookahead_dist: 0.6 # 从1.5略微降低
+  feasibility_check_no_poses: 8       # 从10降低，减少检查点
+  publish_feedback: true
+
+  # ========================
+  # 轨迹优化参数 (关键优化)
+  # ========================
+  no_inner_iterations: 4             # 从5降低
+  no_outer_iterations: 3             # 从4降低
+  optimization_activate: True
+  optimization_verbose: False
+  penalty_epsilon: 0.08              # 从0.05增大，提高收敛容忍度
+  obstacle_cost_exponent: 3          # 从4降低，平滑障碍物代价
+
+  # 速度约束权重 (微调)
+  weight_max_vel_x: 1.5              # 从2降低
+  weight_max_vel_theta: 1.8         # 从1降低
+  weight_acc_lim_x: 0.8              # 从1降低
+  weight_acc_lim_theta: 1.8          # 从1降低
+  weight_max_vel_y: 0
+  weight_acc_lim_y: 0
+
+  # 运动学约束权重 (优化)
+  weight_kinematics_nh: 1000          # 从1000降低
+  weight_kinematics_forward_drive: 600 # 从800降低
+  weight_kinematics_turning_radius: 1
+
+  # 代价权重 (重新平衡)
+  weight_optimaltime: 1.2            # 从1提高
+  weight_shortest_path: 0.3          # 从0.5降低
+  weight_obstacle: 60                # 从75降低
+  weight_inflation: 0.15             # 从0.2降低
+  weight_dynamic_obstacle: 8         # 从10降低
+  weight_dynamic_obstacle_inflation: 0.15 # 从0.2降低
+  weight_viapoint: 1
+  weight_adapt_factor: 1.8           # 从2微调
+
+  # ========================
+  # 同伦类规划器 (优化计算负载)
+  # ========================
+  enable_homotopy_class_planning: True
+  enable_multithreading: True
+  simple_exploration: False
+  max_number_classes: 3              # 从4降低
+  selection_cost_hysteresis: 1.1     # 从1.0提高
+  selection_prefer_initial_plan: 0.9  # 从0.95降低
+  roadmap_graph_no_samples: 12        # 从15降低
+  roadmap_graph_area_width: 4         # 从5降低
+
+  # ========================
+  # 恢复行为相关参数 (增强)
+  # ========================
+  shrink_horizon_backup: True
+  shrink_horizon_min_duration: 10     # 从10降低
+  oscillation_recovery: True         # 从False启用
+  oscillation_v_eps: 0.2            # 从0.1提高
+  oscillation_omega_eps: 0.1        # 从0.1提高
+  oscillation_recovery_min_duration: 5 # 从10降低
+  oscillation_filter_duration: 6     # 从10降低
+
+  # 新增恢复参数
+  recovery:
+    recovery_behavior_enabled: true
+    rotation_attempt_distance: 0.3  # 控制旋转恢复幅度
+    clearing_radius: 1.8             # 代价地图清理半径(原2.0)

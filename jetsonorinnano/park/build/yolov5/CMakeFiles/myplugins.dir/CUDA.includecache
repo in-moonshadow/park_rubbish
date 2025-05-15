@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/wheeltec/park/src/yolov5/plugin/yololayer.cu
+yololayer.h
+/home/wheeltec/park/src/yolov5/plugin/yololayer.h
+cuda_utils.h
+/home/wheeltec/park/src/yolov5/plugin/cuda_utils.h
+cassert
+-
+vector
+-
+iostream
+-
+
+/home/wheeltec/park/src/yolov5/plugin/yololayer.h
+types.h
+/home/wheeltec/park/src/yolov5/plugin/types.h
+macros.h
+/home/wheeltec/park/src/yolov5/plugin/macros.h
+vector
+-
+string
+-
+
+/home/wheeltec/park/src/yolov5/src/config.h
+
+/home/wheeltec/park/src/yolov5/src/cuda_utils.h
+cuda_runtime_api.h
+-
+
+/home/wheeltec/park/src/yolov5/src/macros.h
+NvInfer.h
+-
+
+/home/wheeltec/park/src/yolov5/src/types.h
+config.h
+/home/wheeltec/park/src/yolov5/src/config.h
+

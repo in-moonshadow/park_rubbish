@@ -1,0 +1,6 @@
+<launch>
+    <!-- 启动目标检测节点 -->
+    <node name="yolov5" pkg="yolov5" type="yolov5" output="screen">
+        <!-- 如果需要，可以在这里添加参数 -->
+    </node>
+</launch>
